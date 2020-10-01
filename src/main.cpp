@@ -39,20 +39,21 @@ void setup() {
 void loop() {
   ps.update();
   double a=map(ps.A_Ry(),0,255,90,220);
-  double b=map(ps.A_Rx(),0,255,-50,50);
+  double b=map(ps.A_Rx(),0,255,100,-100);
+  double c=map(ps.A_Lx(),0,255,0,100);
   //int a=map(ps.A_Ry(),0,255,-120,-60);
   FL_Shoulder.update_clk();
   FL_Elbow.update_clk();
   FL_Wrist.update_clk();
   //double domain=ik.GetDomain(a,0,0);
   //ik.LeftIK(a,0,0,domain,FL_angles);
-  ik.GetJointAngles(a,b,0,Right,FL_angles);
-  FL_angles[0]*=0*DEG_TO_RAD;
+  ik.GetJointAngles(b,c,a,Right,FL_angles);
+  FL_angles[0]+=180*DEG_TO_RAD;
   FL_angles[1]+=-0*DEG_TO_RAD;
-  FL_angles[2]+=0*DEG_TO_RAD;
+  FL_angles[2]+=-180*DEG_TO_RAD;
   FL_Shoulder.SetGoal(FL_angles[0]*RAD_TO_DEG,1000.0);
-  FL_Elbow.SetGoal(FL_angles[1]*RAD_TO_DEG,1000.0);
-  FL_Wrist.SetGoal(-FL_angles[2]*RAD_TO_DEG,1000.0);
+  FL_Elbow.SetGoal(-FL_angles[1]*RAD_TO_DEG,1000.0);
+  FL_Wrist.SetGoal(FL_angles[2]*RAD_TO_DEG,1000.0);
   
   cout<<"kata="<<FL_angles[0]*RAD_TO_DEG<<" hizi="<<FL_angles[1]*RAD_TO_DEG<<" tekubu="<<FL_angles[2]*RAD_TO_DEG<<","<<endl;
   //Serial.println(FL_Wrist.GetPoseEstimate());
