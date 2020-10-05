@@ -35,6 +35,7 @@ Vector3 LegMotion::getLegPositon(double rps,double radius,double direction,doubl
 
 Vector3 LegMotion::getLegPositon2(double rps,double radius,double groundtime,double direction,double phase=0.0){
     phase/=360.0;
+    direction-=180;
     double t=getRad(rps)/(M_PI*2.0)+phase;
     if(t>1.0){
         t-=1.0;
@@ -45,13 +46,18 @@ Vector3 LegMotion::getLegPositon2(double rps,double radius,double groundtime,dou
         return pos;
     }
     if(t<t1){
+        
+        pos.x=(2.0*radius*t/t1-radius)*cos(direction*DEG_TO_RAD);
+        pos.y=(2.0*radius*t/t1-radius)*sin(direction*DEG_TO_RAD);
         pos.z=0;
-        pos.x=2.0*radius*t/t1-radius;
+
     }
     else{
-        pos.x=radius*cos((t-t1)/(1-t1)*M_PI);
+        pos.x=radius*cos((t-t1)/(1-t1)*M_PI)*cos(direction*DEG_TO_RAD);
+        pos.y=radius*cos((t-t1)/(1-t1)*M_PI)*sin(direction*DEG_TO_RAD);
         pos.z=-radius*sin((t-t1)/(1-t1)*M_PI)*2.0;
     }
+    //Serial.print(pos.y);
     return pos;
 
 

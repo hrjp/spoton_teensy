@@ -34,7 +34,7 @@ public:
     /// @param rps [rps] 歩行モーションの角速度
     /// @param radius 生成する歩行モーションの半径
     /// @param groundtime 地面に足が触れている時間の割合
-    /// @param direction 歩行モーションで進む方向[deg] 正面に進む場合 0[deg] 反時計回り正z
+    /// @param direction 歩行モーションで進む方向[deg] 正面に進む場合 0[deg] 反時計回り正
     /// @param phase 0~360[deg] 足の位相
     /// @return 計算結果の座標
     Vector3 getLegPositon2(double rps,double radius,double groundtime,double direction,double phase=0.0);
