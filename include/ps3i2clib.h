@@ -88,6 +88,16 @@ void PS3I2C::update(){
     for(int i=0;i<8;i++){
         rdata[i]=Wire.read();
     }
+    if(rdata[6]==255 && rdata[7]==255){
+        rdata[0]=127;
+        rdata[1]=127;
+        rdata[2]=127;
+        rdata[3]=127;
+        rdata[4]=0;
+        rdata[5]=0;
+        rdata[6]=0;
+        rdata[7]=0;
+    }
     p_data[0]=bitRead(rdata[6],0);
     p_data[1]=bitRead(rdata[6],1);
     p_data[2]=bitRead(rdata[6],2);
