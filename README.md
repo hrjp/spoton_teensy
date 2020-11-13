@@ -2,12 +2,12 @@
 Open source robot project
 
 ## spoton_teensy
-This repositories
+This repository
 - PlatformIO
 - Teensy3.5
 
-## 
-
+## Hardware
+- https://github.com/tamago117/4leg-project
 ## Reference
 SpotMicroAI
 - https://spotmicroai.readthedocs.io/en/latest/
